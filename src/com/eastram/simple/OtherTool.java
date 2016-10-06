@@ -16,6 +16,8 @@ import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Timebox;
 
+import com.eastram.zk.QRHandler;
+
 /**
  * Clase con utilidades correspondientes a procesos internos.
  * @author user

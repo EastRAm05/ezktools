@@ -1,4 +1,4 @@
-package com.eastram.simple;
+package com.eastram.zk;
 
 import java.sql.Connection;
 import java.sql.SQLException;

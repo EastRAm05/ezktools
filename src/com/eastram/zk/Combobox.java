@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.zkoss.zul.Comboitem;
 
-import com.eastram.simple.QRHandler;
-
 public class Combobox extends org.zkoss.zul.Combobox {
 
 	private static final long serialVersionUID = 2434833817650744043L;

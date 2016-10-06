@@ -25,7 +25,6 @@ import org.zkoss.zul.Paging;
 import org.zkoss.zul.event.PagingEvent;
 
 import com.eastram.simple.OtherTool;
-import com.eastram.simple.QRHandler;
 
 /**
  * Gestiona la conexion con la DB para la manipulacion con el Grid.
