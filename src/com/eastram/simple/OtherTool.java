@@ -73,7 +73,7 @@ public class OtherTool {
 	 * @throws SQLException 
 	 */
 	public static Combobox setComboChild(Combobox comb, Connection con, String query) throws SQLException {
-		List<Object[]> ob = new QRHandler().consultaArray(con, query, null);
+		List<Object[]> ob = new QRHandler().queryArray(con, query, null);
 		for(int cont = 0; cont<ob.size(); cont++) {
 			Object[] array = ob.get(cont);
 			Comboitem item = new Comboitem();

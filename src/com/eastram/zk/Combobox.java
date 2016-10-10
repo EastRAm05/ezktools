@@ -6,6 +6,11 @@ import java.util.List;
 
 import org.zkoss.zul.Comboitem;
 
+/**
+ *
+ * @author StreamEast
+ *
+ */
 public class Combobox extends org.zkoss.zul.Combobox {
 
 	private static final long serialVersionUID = 2434833817650744043L;
@@ -18,8 +23,8 @@ public class Combobox extends org.zkoss.zul.Combobox {
 	 * @param params : Parametros de busqueda
 	 * @throws SQLException 
 	 */
-	public void setLista(Connection con, String query, Object[] params) throws SQLException {
-		List<Object[]> ob = consultor.consultaArray(con, query, params);
+	public void setModel(Connection con, String query, Object[] params) throws SQLException {
+		List<Object[]> ob = consultor.queryArray(con, query, params);
 		for(int cont = 0; cont<ob.size(); cont++) {
 			Object[] array = ob.get(cont);
 			Comboitem item = new Comboitem();
@@ -37,8 +42,8 @@ public class Combobox extends org.zkoss.zul.Combobox {
 	 * @param query : Query para llenar el Combo
 	 * @throws SQLException 
 	 */
-	public void setLista(Connection con, String query) throws SQLException {
-		setLista(con, query, null);
+	public void setModel(Connection con, String query) throws SQLException {
+		setModel(con, query, null);
 	}
 	
 	public String getSelectedItemId() {

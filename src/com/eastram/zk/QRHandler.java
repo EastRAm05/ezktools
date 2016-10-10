@@ -21,41 +21,45 @@ public class QRHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public List<Object[]> consultaArray(Connection con, String consulta, Object[] parametros) {
+	public List<Object[]> queryArray(Connection conn, String sqlString, Object[] params) {
 		try {
-			return getQueryRunner().query(con, consulta, parametros, new ArrayListHandler());
+			return getQueryRunner().query(conn, sqlString, params, new ArrayListHandler());
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
 	@SuppressWarnings("deprecation")
-	public Object consultaSimple(Connection con, String consulta, Object[] parametros) {
+	public Object queryObject(Connection conn, String sqlString, Object[] params) {
 		try {
-			return getQueryRunner().query(con, consulta, parametros, new ScalarHandler());
+			return getQueryRunner().query(conn, sqlString, params, new ScalarHandler());
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
 	@SuppressWarnings("deprecation")
-	public <T> List<T> consultaListT(Connection con, String consulta, Class<T> clase, Object[] paramentros) {
+	public <T> List<T> queryListT(Connection conn, String sqlString, Class<T> classT, Object[] params) {
 		try {
-			return getQueryRunner().query(con, consulta, paramentros, new BeanListHandler<T>(clase));
+			return getQueryRunner().query(conn, sqlString, params, new BeanListHandler<T>(classT));
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public int update(Connection con, String consulta, Object[] parametros) {
+	public int update(Connection conn, String sqlString, Object[] params) {
 		try {
-			return getQueryRunner().update(con, consulta, parametros);
+			return getQueryRunner().update(conn, sqlString, params);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return -1;
 	}
 }

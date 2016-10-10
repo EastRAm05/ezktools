@@ -28,7 +28,7 @@ import com.eastram.simple.OtherTool;
 
 /**
  * Gestiona la conexion con la DB para la manipulacion con el Grid.
- * @author Estuardo Ramos
+ * @author Stream East
  */
 public class ListHandler<T> implements List<T>{
 	
@@ -148,7 +148,7 @@ public class ListHandler<T> implements List<T>{
 			public void onEvent(Event event) throws Exception {
 				PagingEvent pagEvent = (PagingEvent) event;
 				int indice = pagEvent.getActivePage() * pageSize;
-				busqueda(indice);
+				executeQuery(indice);
 				view();
 			}
 		}); 
@@ -161,9 +161,9 @@ public class ListHandler<T> implements List<T>{
 		M_WARNING = mensaje;
 	}
 	
-	public void busquedaReg(Object... comps) throws Exception {
-		setArrayComponents(comps);
-		busqueda();
+	public void simpleSearch(Object... components) throws Exception {
+		setArrayComponents(components);
+		executeQuery();
 		view();
 	}
 	
@@ -172,7 +172,7 @@ public class ListHandler<T> implements List<T>{
 		binder.loadAll();
 	}
 	
-	public void setArrayComponents(Object[] comps) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	public void setArrayComponents(Object... comps) {
 		params = new ArrayList<Object>();
 		velim = new ArrayList<String>();
 		for(Object comp : comps) {
@@ -184,7 +184,7 @@ public class ListHandler<T> implements List<T>{
 		}
 		setProsQuery(query);
 	}
-	private void setComponent(Object comp) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	private void setComponent(Object comp) {
 		/*if(comp instanceof Checkbox || comp instanceof Radio) {
 			Class<? extends Object> clase = comp.getClass();
 			String valid = null;
@@ -205,7 +205,18 @@ public class ListHandler<T> implements List<T>{
 			} 
 			valida(val);
 		} else if(comp instanceof Component) {
-			valida(OtherTool.getMetodo("getValue", comp.getClass()).invoke(comp));
+			try {
+				valida(OtherTool.getMetodo("getValue", comp.getClass()).invoke(comp));
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			valida(comp);
 		}
@@ -248,23 +259,23 @@ public class ListHandler<T> implements List<T>{
 		return rest;
 	}
 	
-	public List<T> busqueda() throws Exception {
-		return busqueda(0);
+	public List<T> executeQuery() throws Exception {
+		return executeQuery(0);
 	}
 	public List<T> totalb() throws Exception {
-		return busqueda(-1);
+		return executeQuery(-1);
 	}
 	
-	private List<T> busqueda(int indice) throws Exception {
+	private List<T> executeQuery(int index) throws Exception {
 		Connection con = data.getConnection();
 		try {
-			if(indice == 0 && paging != null) {
+			if(index == 0 && paging != null) {
 				paging.setTotalSize(getPagingSize(con));
 				paging.setPageSize(pageSize);
-				paging.setActivePage(indice);
+				paging.setActivePage(index);
 			}
 			Object[] param = params.toArray(new Object[params.size()]);
-			lista = consultor.consultaListT(con, getIndices(indice), classDto, param);
+			lista = consultor.queryListT(con, getIndexes(index), classDto, param);
 			//params = new ArrayList<Object>();
 			if((lista == null || lista.size() == 0) && valWarning) {
 				Messagebox.show(M_WARNING, T_WARNING, Messagebox.OK, null);
@@ -277,13 +288,13 @@ public class ListHandler<T> implements List<T>{
 	private int getPagingSize(Connection con) throws Exception {
 		int size = -1;
 		Object[] param = params.toArray(new Object[params.size()]);
-		Object res = consultor.consultaSimple(con, COUNT, param);
+		Object res = consultor.queryObject(con, COUNT, param);
 		res = ""+res;
 		res = res == null || ((String)res).equals("") ? "0" : res;
 		size = Integer.parseInt(res.toString());
 		return size;
 	}
-	private String getIndices(int index) {
+	private String getIndexes(int index) {
 		String query = PRIN;
 		if(index >= 0 && paging != null) {
 			query = query.replace("#MIN#", ""+(index+1));
