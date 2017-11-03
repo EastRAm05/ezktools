@@ -13,7 +13,7 @@ public class QRHandler {
 	
 	private static QueryRunner queryRuner;
 	
-	private QueryRunner getQueryRunner() {
+	private static QueryRunner getQueryRunner() {
 		if(queryRuner == null) {
 			queryRuner = new QueryRunner();
 		}
@@ -21,7 +21,7 @@ public class QRHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public List<Object[]> queryArray(Connection conn, String sqlString, Object[] params) {
+	public static List<Object[]> queryArray(Connection conn, String sqlString, Object[] params) {
 		try {
 			return getQueryRunner().query(conn, sqlString, params, new ArrayListHandler());
 		} catch (SQLException e) {
@@ -32,7 +32,7 @@ public class QRHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public Object queryObject(Connection conn, String sqlString, Object[] params) {
+	public static Object queryObject(Connection conn, String sqlString, Object[] params) {
 		try {
 			return getQueryRunner().query(conn, sqlString, params, new ScalarHandler());
 		} catch (SQLException e) {
@@ -43,7 +43,7 @@ public class QRHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public <T> List<T> queryListT(Connection conn, String sqlString, Class<T> classT, Object[] params) {
+	public static <T> List<T> queryListT(Connection conn, String sqlString, Class<T> classT, Object[] params) {
 		try {
 			return getQueryRunner().query(conn, sqlString, params, new BeanListHandler<T>(classT));
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ public class QRHandler {
 		return null;
 	}
 	
-	public int update(Connection conn, String sqlString, Object[] params) {
+	public static int update(Connection conn, String sqlString, Object[] params) {
 		try {
 			return getQueryRunner().update(conn, sqlString, params);
 		} catch (SQLException e) {

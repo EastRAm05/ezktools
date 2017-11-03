@@ -144,7 +144,7 @@ public class ListHandler<T> implements List<T>{
 	}
 	public void setPaging(Paging pag) {
 		paging = pag;
-		paging.addEventListener("onPaging", new EventListener() {
+		paging.addEventListener("onPaging", new EventListener<Event>() {
 			public void onEvent(Event event) throws Exception {
 				PagingEvent pagEvent = (PagingEvent) event;
 				int indice = pagEvent.getActivePage() * pageSize;
