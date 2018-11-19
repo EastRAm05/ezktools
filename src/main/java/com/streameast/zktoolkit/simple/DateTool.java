@@ -1,4 +1,4 @@
-package com.streameast.simple;
+package com.streameast.zktoolkit.simple;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

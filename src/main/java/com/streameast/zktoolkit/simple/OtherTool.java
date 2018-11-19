@@ -1,4 +1,4 @@
-package com.streameast.simple;
+package com.streameast.zktoolkit.simple;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Timebox;
 
-import com.streameast.zk.QRHandler;
+import com.streameast.zktoolkit.QRHandler;
 
 /**
  * Clase con utilidades correspondientes a procesos internos.

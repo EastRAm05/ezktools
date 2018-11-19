@@ -1,4 +1,4 @@
-package com.streameast.zk;
+package com.streameast.zktoolkit;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,7 +21,7 @@ import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.event.PagingEvent;
 
-import com.streameast.simple.OtherTool;
+import com.streameast.zktoolkit.simple.OtherTool;
 
 /**
  * Manages the model, brings the information from the database, manages the components 

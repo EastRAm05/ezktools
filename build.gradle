@@ -7,7 +7,13 @@ sourceCompatibility = '1.5'
 targetCompatibility = '1.5'
 
 dependencies {
-    
+    api 'org.zkoss.zk:zul:8.5.0'
+    //api 'org.zkoss.zk:zk:8.5.0'
+    api 'org.zkoss.zk:zkplus:8.5.0'
+    api 'org.zkoss.zk:zkbind:8.5.0'
+    api 'commons-dbutils:commons-dbutils:1.7'
+
+
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

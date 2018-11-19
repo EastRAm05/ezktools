@@ -1,4 +1,4 @@
-package com.streameast.simple;
+package com.streameast.zktoolkit.simple;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;

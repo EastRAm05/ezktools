@@ -1,4 +1,4 @@
-package com.streameast.zk;
+package com.streameast.zktoolkit;
 
 import java.sql.Connection;
 import java.sql.SQLException;

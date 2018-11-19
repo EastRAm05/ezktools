@@ -1,4 +1,4 @@
-package com.streameast.zk;
+package com.streameast.zktoolkit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.event.PagingEvent;
 
-import com.streameast.simple.OtherTool;
+import com.streameast.zktoolkit.simple.OtherTool;
 
 /**
  * Gestiona la conexion con la DB para la manipulacion con el Grid.
@@ -54,7 +54,7 @@ public class ListHandler<T> implements List<T>{
 			 ") A WHERE ROWNUM <= #MAX#) WHERE RNUM >= #MIN#",
 			 "SELECT MAX(ROWNUM) FROM (", ")"};
 	private String T_WARNING = "Advertencia!";
-	private String M_WARNING = "No se encontraron datos para la búsqueda, intente con otros filtros de búsqueda.";
+	private String M_WARNING = "No se encontraron datos para la bï¿½squeda, intente con otros filtros de bï¿½squeda.";
 	
 	public ListHandler(Class<T> cl) {
 		classDto = cl;
