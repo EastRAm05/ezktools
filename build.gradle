@@ -1,0 +1,27 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+group = 'com.streameast.zktoolkit'
+version = '1.1.0'
+sourceCompatibility = '1.5'
+targetCompatibility = '1.5'
+
+dependencies {
+    
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnit()
+}
+
+task createPom <<{
+    pom {
+    }.writeTo("pom.xml")
+}
